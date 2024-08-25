@@ -1,0 +1,47 @@
+name: Trigger auto deployment for team-garlic-react-vite-web
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ web ]
+    paths:
+    - '**'
+    - '.github/workflows/team-garlic-react-vite-web-AutoDeployTrigger-68b9a569-2e73-4a60-afd0-9c587e17a7ab.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read #Required when GH token is used to authenticate with private repo
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.TEAMGARLICREACTVITEWEB_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.TEAMGARLICREACTVITEWEB_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.TEAMGARLICREACTVITEWEB_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }} 
+          registryUrl: docker.io
+          registryUsername: ${{ secrets.TEAMGARLICREACTVITEWEB_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.TEAMGARLICREACTVITEWEB_REGISTRY_PASSWORD }}
+          containerAppName: team-garlic-react-vite-web
+          resourceGroup: rg-team-garlic
+          imageToBuild: tkddmskr/team-garlic-react-vite-web:${{ github.sha }}
+          _buildArgumentsKey_: |
+            _buildArgumentsValues_
+
+
