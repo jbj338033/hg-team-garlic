@@ -31,12 +31,14 @@ const Login = () => {
           onChange={login.handleLoginData}
           name="username"
           value={login.loginData.username}
+          type="text"
         />
         <S.Input
           placeholder="비밀번호"
           onChange={login.handleLoginData}
           name="password"
           value={login.loginData.password}
+          type="password"
         />
       </S.InputWrap>
       <S.Button onClick={login.submit}>로그인</S.Button>

@@ -30,18 +30,21 @@ const Signup = () => {
           onChange={signup.handleSignupData}
           name="username"
           value={signup.signupData.username}
+          type="text"
         />
         <S.Input
           placeholder="비밀번호"
           onChange={signup.handleSignupData}
           name="password"
           value={signup.signupData.password}
+          type="password"
         />
         <S.Input
           placeholder="비밀번호 확인"
           onChange={signup.handlePasswordChk}
           name="passwordChk"
           value={signup.passwordChk}
+          type="password"
         />
       </S.InputWrap>
       <S.Button onClick={signup.submit}>회원가입</S.Button>
