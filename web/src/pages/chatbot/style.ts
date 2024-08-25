@@ -33,5 +33,24 @@ export const Input = styled.input`
   outline:none;
   font-weight:300;
   font-family:sans-serif;
-  border-radius:1rem
+  border-radius:1rem;
 `
+export const RecommendWrap = styled.div`
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+`
+export const Recommend = styled.div`
+  padding: 0.5rem 1rem;
+  border: 0.2rem solid #34c831;
+  background-color: rgba(52, 200, 49, 0.5);
+  border-radius:5rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:1.2rem;
+  cursor: pointer;
+  margin: 0 1rem
+`;
