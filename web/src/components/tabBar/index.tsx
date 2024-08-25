@@ -26,6 +26,10 @@ const TabBar = () => {
     navigation(page);
   }
 
+  if(location.pathname === '/login' || location.pathname === '/signup') {
+    return;
+  }
+
 
   return (
     <S.Container>
