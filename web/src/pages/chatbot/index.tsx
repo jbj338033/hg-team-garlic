@@ -16,16 +16,22 @@ const Chatbot = () => {
   return (
     <S.Container>
       <S.ChatWrap ref={chatWrapRef}>
+        <S.chatIntro>
+          <img src='/assets/farmer.svg' /> <br /><br />
+          챗봇과 함께 대화하며 <br />
+          슬기로운 당신의 농부 생활을 만들어 보세요!
+        </S.chatIntro>
         {chat.chatData.map((item, idx) => (
           <Chatbox message={item} key={idx} />
         ))}
       </S.ChatWrap>
       <S.RecommendWrap>
-        {chat.recommend.map((item) => (
+        {chat.recommend.map((item,idx) => (
           <S.Recommend
             onClick={() => {
               preset(item);
             }}
+            key={idx}
           >
             {item}
           </S.Recommend>
@@ -37,13 +43,17 @@ const Chatbot = () => {
           onChange={chat.handleMessage}
           value={chat.message}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && !chat.loading) {
+            if (
+              e.key === "Enter" &&
+              e.nativeEvent.isComposing === false &&
+              !chat.loading
+            ) {
               chat.submit();
             }
           }}
         />
         <IonIcon
-          name="paper-plane-outline"
+          name={chat.loading ? "ban-outline" : "paper-plane-outline"}
           size="large"
           style={{ fontSize: "1.7rem", marginLeft: "1rem", cursor: "pointer" }}
           onClick={() => {

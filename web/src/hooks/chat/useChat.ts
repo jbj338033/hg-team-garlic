@@ -25,17 +25,28 @@ const useChat = (ref:RefObject<HTMLDivElement>) => {
     setMessage("");
     setLoading(true);
     try{
-      const res = await instance.post(`${import.meta.env.VITE_API_URL}/chatbot`,{
-        message
+      const res = await instance.get(`${import.meta.env.VITE_CHAT_URL}/chat`,{
+        params: {message}
       });
       if(res){
-        setChatData((prev)=>[...prev,res.data.response]);
-        setRecommend(res.data.recommend);
+        if(res.data.response) {
+          setChatData((prev) => [...prev, res.data.response]);
+        }else if (res.data.answer){
+          setChatData((prev) => [...prev, res.data.answer]);
+        }else {
+          setChatData((prev)=>[...prev,'챗봇이 답을 찾지 못했어요. 나중에 다시 시도해 주세요.']);
+        }
+        
+        if(res.data.recommend) {
+          setRecommend(res.data.recommend);
+        }else{
+          setRecommend(res.data.recommand);
+        }
       }
+      setLoading(false);
     }catch{
       setChatData((prev)=>[...prev,'챗봇 시스템에 에러가 발생했습니다.']);
     }
-    setLoading(false);
   };
 
 

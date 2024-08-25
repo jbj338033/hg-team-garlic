@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const SlideIn = keyframes`
+  0% {
+    margin-left:5rem;
+  }
+  100% {
+    margin-left:0;
+  }
+`
 
 export const Container = styled.div`
   width: 100%;
@@ -8,6 +17,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+  animation:${SlideIn} 0.3s forwards;
 `;
 export const ChatWrap = styled.div`
   width:100%;
@@ -16,6 +26,12 @@ export const ChatWrap = styled.div`
   flex-direction:column;
   padding:1rem;
   overflow:scroll;
+`
+export const chatIntro = styled.div`
+  width:70%;
+  text-align:center;
+  align-self:center;
+  padding: 2rem 0;
 `
 export const InputWrap = styled.div`
   width:100%;
@@ -41,6 +57,7 @@ export const RecommendWrap = styled.div`
   justify-content:center;
   align-items:center;
   flex-wrap:wrap;
+  margin-top:2rem;
 `
 export const Recommend = styled.div`
   padding: 0.5rem 1rem;
