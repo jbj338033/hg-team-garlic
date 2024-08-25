@@ -14,7 +14,6 @@ export const ChatWrap = styled.div`
   display:flex;
   flex:1;
   flex-direction:column;
-  justify-content:flex-end;
   padding:1rem;
   overflow:scroll;
 `

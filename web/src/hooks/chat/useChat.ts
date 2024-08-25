@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { RefObject, useEffect, useState } from "react"
 import instance from "../../libs/axios/customAxios";
 
-const useChat = () => {
+const useChat = (ref:RefObject<HTMLDivElement>) => {
   const [chatData, setChatData] = useState<string[]>([]);
   const [message, setMessage] = useState<string>('');
   const [loading, setLoading] = useState(false);
@@ -9,6 +9,12 @@ const useChat = () => {
   const handleMessage = (e:React.ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
   }
+
+  useEffect(()=>{
+    if(ref && ref.current) {
+      ref.current.scrollTop = ref.current.scrollHeight;
+    }
+  },[chatData])
 
   const submit = async () => {
     setChatData((prev)=>[...prev,message]);

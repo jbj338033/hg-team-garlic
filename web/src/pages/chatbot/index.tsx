@@ -2,14 +2,15 @@ import IonIcon from "@reacticons/ionicons";
 import * as S from "./style";
 import Chatbox from "../../components/chatbox";
 import useChat from "../../hooks/chat/useChat";
+import { useRef } from "react";
 
 const Chatbot = () => {
-
-  const { ...chat } = useChat();
+  const chatWrapRef = useRef<HTMLDivElement | null>(null);
+  const { ...chat } = useChat(chatWrapRef);
 
   return (
     <S.Container>
-      <S.ChatWrap>
+      <S.ChatWrap ref={chatWrapRef}>
         {chat.chatData.map((item)=>(
           <Chatbox message={item}/>
         ))}
