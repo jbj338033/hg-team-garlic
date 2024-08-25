@@ -37,7 +37,7 @@ const useLogin = () => {
       if (!loading) {
         try {
           const res = await axios.post(
-            "http://13.209.80.146:8080/auth/login",
+            `${import.meta.env.VITE_API_URL}/auth/login`,
             loginData
           );
           setCookie("REFRESH_TOKEN", res.data.refreshToken, { path: "/", maxAge:2600000 });

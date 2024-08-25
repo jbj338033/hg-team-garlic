@@ -26,7 +26,7 @@ const TabBar = () => {
     navigation(page);
   }
 
-  if(location.pathname === '/login' || location.pathname === '/signup') {
+  if(location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/auth') {
     return;
   }
 

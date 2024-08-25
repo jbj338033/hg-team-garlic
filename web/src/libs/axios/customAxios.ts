@@ -16,7 +16,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config) => {
-    const token = getCookie("accessToken");
+    const token = getCookie("ACCESS_TOKEN");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -48,18 +48,18 @@ instance.interceptors.response.use(
     }
     if (originalRequest && !originalRequest._retry) {
       originalRequest._retry = true;
-      const refreshToken = getCookie("refreshToken");
+      const refreshToken = getCookie("REFRESH_TOKEN");
       if (refreshToken) {
         axios
           .post(`${import.meta.env.VITE_API_URL}/auth/reissue`, {
             refreshToken,
           })
           .then((response) => {
-            const newAccessToken = response.data.data.accessToken;
-            const newRefreshToken = response.data.data.refreshToken;
+            const newAccessToken = response.data.accessToken;
+            const newRefreshToken = response.data.refreshToken;
 
-            setCookie("accessToken", newAccessToken, { path: "/" });
-            setCookie("refreshToken", newRefreshToken, {
+            setCookie("ACCESS_TOKEN", newAccessToken, { path: "/", maxAge:2600000 });
+            setCookie("REFRESH_TOKEN", newRefreshToken, {
               path: "/",
               maxAge: "2600000",
             });
@@ -70,8 +70,8 @@ instance.interceptors.response.use(
             setTimeout(() => {
               window.location.href = "/login";
             }, 100);
-            removeCookie("accessToken");
-            removeCookie("refreshToken");
+            removeCookie("ACCESS_TOKEN");
+            removeCookie("REFRESH_TOKEN");
             return Promise.reject(refreshError);
           });
       }

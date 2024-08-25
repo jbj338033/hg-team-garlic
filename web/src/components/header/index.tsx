@@ -1,6 +1,13 @@
+import { useLocation } from 'react-router-dom';
 import * as S from './style'
 
 const Header = () => {
+
+  const location = useLocation();
+
+  if (location.pathname === "/auth") {
+    return;
+  }
   return (
     <S.Container>
       <S.LogoWrap>

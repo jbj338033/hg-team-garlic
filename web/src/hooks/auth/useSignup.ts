@@ -46,7 +46,7 @@ const useSignup = () => {
       if (!loading) {
         try {
           const res = await axios.post(
-            "http://13.209.80.146:8080/auth/signup",
+            `${import.meta.env.VITE_API_URL}/auth/signup`,
             signupData
           );
           if (res) {

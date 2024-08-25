@@ -55,7 +55,7 @@ const Chatbot = () => {
         <IonIcon
           name={chat.loading ? "ban-outline" : "paper-plane-outline"}
           size="large"
-          style={{ fontSize: "1.7rem", marginLeft: "1rem", cursor: "pointer" }}
+          style={{ fontSize: "70%", marginLeft: "1rem", cursor: "pointer" }}
           onClick={() => {
             if (!chat.loading) chat.submit();
           }}
