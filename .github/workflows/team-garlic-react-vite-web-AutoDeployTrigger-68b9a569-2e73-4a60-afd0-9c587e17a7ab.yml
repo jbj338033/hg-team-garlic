@@ -2,10 +2,10 @@ name: Trigger auto deployment for team-garlic-react-vite-web
 
 # When this action will be executed
 on:
-  # Automatically trigger it when detected changes in repo
+
   push:
     branches: 
-      [ main ]
+      [ web ]
     paths:
     - '**'
     - '.github/workflows/team-garlic-react-vite-web-AutoDeployTrigger-68b9a569-2e73-4a60-afd0-9c587e17a7ab.yml'
