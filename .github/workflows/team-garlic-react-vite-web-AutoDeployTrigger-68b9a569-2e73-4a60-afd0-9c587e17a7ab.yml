@@ -24,6 +24,13 @@ jobs:
       - name: Checkout to the branch
         uses: actions/checkout@v2
 
+      - name: Set up pack
+        run: |
+          curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.20.0/pack-v0.20.0-linux.tgz" | tar xz -C /usr/local/bin
+      - name: Build using pack
+        run: |
+          pack build myapp --builder heroku/buildpacks:18
+
       - name: Azure Login
         uses: azure/login@v2
         with:
