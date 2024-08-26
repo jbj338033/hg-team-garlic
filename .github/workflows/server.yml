@@ -29,6 +29,19 @@ jobs:
 #          sed -i 's#{AZURE_OPENAI_ENDPOINT}#${{ secrets.AZURE_OPENAI_ENDPOINT }}#' server/src/main/resources/application.yml
 #          sed -i 's#{NEWS_API_KEY}#${{ secrets.NEWS_API_KEY }}#' server/src/main/resources/application.yml
 
+      - name: Set yml
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: 'server/src/main/resources/application.yml'
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+
       - name: Gradle Caching
         uses: actions/cache@v3
         with:
@@ -43,14 +56,6 @@ jobs:
         run: |
           cd server
           ./gradlew build
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
-          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
-          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
-          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
 
       - name: Log in to Azure Container Registry
         uses: azure/docker-login@v1
