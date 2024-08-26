@@ -28,4 +28,7 @@ public class SuggestLocation {
 
     @Column(name = "longitude", nullable = false)
     private Double longitude;
+
+    @Column(name = "logo", nullable = false)
+    private String logo;
 }

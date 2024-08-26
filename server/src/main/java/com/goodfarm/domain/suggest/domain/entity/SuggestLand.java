@@ -20,7 +20,7 @@ public class SuggestLand {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String address;
 
     @Column(nullable = false)
@@ -28,6 +28,9 @@ public class SuggestLand {
 
     @Column(nullable = false)
     private Integer price;
+
+    @Column(nullable = false)
+    private String cover;
 
     @Column(nullable = false)
     private Double latitude;

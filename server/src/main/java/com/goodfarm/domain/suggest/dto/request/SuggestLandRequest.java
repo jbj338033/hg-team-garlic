@@ -5,6 +5,7 @@ public record SuggestLandRequest(
         String address,
         int area,
         int price,
+        String cover,
         double latitude,
         double longitude,
         String location

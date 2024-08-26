@@ -27,8 +27,8 @@ public class SuggestController {
     }
 
     @GetMapping("/lands")
-    public List<SuggestLandResponse> suggestLands() {
-        return suggestService.suggestLands();
+    public List<SuggestLandResponse> suggestLands(@RequestParam(required = false) String location) {
+        return suggestService.suggestLands(location);
     }
 
     @PostMapping("/lands")

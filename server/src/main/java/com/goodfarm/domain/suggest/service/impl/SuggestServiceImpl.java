@@ -28,9 +28,9 @@ public class SuggestServiceImpl implements SuggestService {
 
     @Override
     public List<SuggestBookResponse> suggestBooks() {
-        return suggestBookRepository.findTop5ByOrderByIdAsc().stream()
-                .map(SuggestBookResponse::of)
-                .collect(Collectors.toList());
+            return suggestBookRepository.findAll().stream()
+                    .map(SuggestBookResponse::of)
+                    .collect(Collectors.toList());
     }
 
     @Override
@@ -39,16 +39,27 @@ public class SuggestServiceImpl implements SuggestService {
                 .title(request.title())
                 .author(request.author())
                 .summary(request.summary())
+                .cover(request.cover())
+                .url(request.url())
                 .build();
 
         suggestBookRepository.save(book);
     }
 
     @Override
-    public List<SuggestLandResponse> suggestLands() {
-        return suggestLandRepository.findTop5ByOrderByIdAsc().stream()
-                .map(SuggestLandResponse::of)
-                .collect(Collectors.toList());
+    public List<SuggestLandResponse> suggestLands(String location) {
+        if (location == null) {
+            return suggestLandRepository.findTop5ByOrderByIdAsc().stream()
+                    .map(SuggestLandResponse::of)
+                    .collect(Collectors.toList());
+        } else {
+            SuggestLocation loc = suggestLocationRepository.findByName(location)
+                    .orElseThrow(() -> new CustomException(SuggestLocationError.LOCATION_NOT_FOUND));
+
+            return suggestLandRepository.findTop5ByLocationOrderByIdAsc(loc).stream()
+                    .map(SuggestLandResponse::of)
+                    .collect(Collectors.toList());
+        }
     }
 
     @Override
@@ -60,6 +71,7 @@ public class SuggestServiceImpl implements SuggestService {
                 .address(request.address())
                 .area(request.area())
                 .price(request.price())
+                .cover(request.cover())
                 .latitude(request.latitude())
                 .longitude(request.longitude())
                 .location(location)
@@ -92,6 +104,7 @@ public class SuggestServiceImpl implements SuggestService {
                 .population(request.population())
                 .latitude(request.latitude())
                 .longitude(request.longitude())
+                .logo(request.logo())
                 .build();
 
         suggestLocationRepository.save(location);

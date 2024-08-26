@@ -12,7 +12,7 @@ public interface SuggestService {
 
     void suggestBook(SuggestBookRequest request);
 
-    List<SuggestLandResponse> suggestLands();
+    List<SuggestLandResponse> suggestLands(String location);
 
     void suggestLand(SuggestLandRequest request);
 

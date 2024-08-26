@@ -15,12 +15,18 @@ public class SuggestBook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String title;
 
     @Column(nullable = false)
     private String author;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String summary;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String cover;
+
+    @Column(nullable = false)
+    private String url;
 }

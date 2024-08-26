@@ -4,6 +4,7 @@ public record SuggestLocationRequest(
         String name,
         int population,
         double latitude,
-        double longitude
+        double longitude,
+        String logo
 ) {
 }

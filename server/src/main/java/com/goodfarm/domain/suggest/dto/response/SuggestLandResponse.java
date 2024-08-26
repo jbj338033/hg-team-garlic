@@ -5,13 +5,21 @@ import com.goodfarm.domain.suggest.domain.entity.SuggestLand;
 public record SuggestLandResponse(
         String name,
         double latitude,
-        double longitude
+        double longitude,
+        String cover,
+        String address,
+        int area,
+        int price
 ) {
     public static SuggestLandResponse of(SuggestLand land) {
         return new SuggestLandResponse(
                 land.getName(),
                 land.getLatitude(),
-                land.getLongitude()
+                land.getLongitude(),
+                land.getCover(),
+                land.getAddress(),
+                land.getArea(),
+                land.getPrice()
         );
     }
 }

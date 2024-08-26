@@ -6,14 +6,16 @@ public record SuggestLocationResponse(
         String name,
         int population,
         double latitude,
-        double longitude
+        double longitude,
+        String logo
 ) {
     public static SuggestLocationResponse of(SuggestLocation location) {
         return new SuggestLocationResponse(
                 location.getName(),
                 location.getPopulation(),
                 location.getLatitude(),
-                location.getLongitude()
+                location.getLongitude(),
+                location.getLogo()
         );
     }
 }
