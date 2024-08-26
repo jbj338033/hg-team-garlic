@@ -17,19 +17,24 @@ const Chatbot = () => {
     <S.Container>
       <S.ChatWrap ref={chatWrapRef}>
         <S.chatIntro>
-          <img src='/assets/farmer.svg' /> <br /><br />
+          <img src="/assets/farmer.svg" /> <br />
+          <br />
           챗봇과 함께 대화하며 <br />
           슬기로운 당신의 농부 생활을 만들어 보세요!
         </S.chatIntro>
         {chat.chatData.map((item, idx) => (
           <Chatbox message={item} key={idx} />
         ))}
-        {
-          chat.loading && <Chatbox message="....."/>
-        }
+        {chat.loading && (
+          <S.WaitingWrap>
+            <S.WaitingDot></S.WaitingDot>
+            <S.WaitingDot></S.WaitingDot>
+            <S.WaitingDot></S.WaitingDot>
+          </S.WaitingWrap>
+        )}
       </S.ChatWrap>
       <S.RecommendWrap>
-        {chat.recommend.map((item,idx) => (
+        {chat.recommend.map((item, idx) => (
           <S.Recommend
             onClick={() => {
               preset(item);

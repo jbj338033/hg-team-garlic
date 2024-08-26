@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './style'
+import IonIcon from '@reacticons/ionicons';
 
 const Auth = () => {
 
@@ -8,6 +9,7 @@ const Auth = () => {
   return (
     <S.Container>
       <S.LogoWrap>
+        <IonIcon name='chevron-back-outline' size='large' style={{fontSize:'1.7rem',alignSelf:'flex-start'}} onClick={()=>{navigate(-2)}}/>
         <S.Logo src="/assets/logo.svg" alt="" />
         <S.Title>슬기로운 농사 생활, 굿팜</S.Title>
       </S.LogoWrap>

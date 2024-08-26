@@ -1,20 +1,31 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
+const SlideIn = keyframes`
+  0% {
+    margin-left:5rem;
+  }
+  100% {
+    margin-left:0;
+  }
+`;
 export const Container = styled.div`
-  width:100%;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  align-items:center;
-`
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  animation: ${SlideIn} 0.3s forwards;
+`;
 export const LogoWrap = styled.div`
   width:100%;
-  margin-top:20rem;
+  margin-top:5rem;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-direction:column;
+  padding: 0 4rem;
+  box-sizing:border-box;
 `
 export const Logo = styled.img`
   width:7rem;
