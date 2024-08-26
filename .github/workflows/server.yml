@@ -13,11 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
+
+      - name: Inject Environments
+        run: |
+          sed -i 's#{${DATABASE_URL}}#'"${{ secrets.DATABASE_URL }}"'#' server/src/main/resources/application.yml
+          sed -i 's#{${DATABASE_USERNAME}}#'"${{ secrets.DATABASE_USERNAME }}"'#' server/src/main/resources/application.yml
+          sed -i 's#{${DATABASE_PASSWORD}}#'"${{ secrets.DATABASE_PASSWORD }}"'#' server/src/main/resources/application.yml
+          sed -i 's#{${JWT_SECRET_KEY}}#'"${{ secrets.JWT_SECRET_KEY }}"'#' server/src/main/resources/application.yml
 
       - name: Build with Gradle
         run: |
