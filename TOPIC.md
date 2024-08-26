@@ -51,7 +51,6 @@
 3. **국내 식품산업 성장 기여:** 귀농 인구의 증가와 농업 활성화는 국내 식품 산업의 규모 확대에 기여할 것입니다.
 
 ## 제품 아키텍처 (이미지)
-hg-team-garlic/images/아키텍처.png
-
+https://github.com/hackersground-kr/hg-team-garlic/blob/main/images/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98.png
 ## 제품 소개 슬라이드
-hg-team-garlic/decks/제품 소개 슬라이드.pptx
+https://github.com/hackersground-kr/hg-team-garlic/blob/main/decks/%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%B7%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20%E1%84%89%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3.pptx
