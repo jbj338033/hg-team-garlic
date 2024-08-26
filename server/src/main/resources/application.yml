@@ -1,20 +1,20 @@
 spring:
   datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    url: DATABASE_URL
+    username: DATABASE_USERNAME
+    password: DATABASE_PASSWORD
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
   ai:
     azure:
       openai:
-        api-key: ${AZURE_OPENAI_API_KEY}
-        endpoint: ${AZURE_OPENAI_ENDPOINT}
+        api-key: AZURE_OPENAI_API_KEY
+        endpoint: AZURE_OPENAI_ENDPOINT
 
 jwt:
-  secret-key: ${JWT_SECRET_KEY}
+  secret-key: JWT_SECRET_KEY
   access-token-expiration: 3600000000
 news:
-  api-key: ${NEWS_API_KEY}
+  api-key: NEWS_API_KEY
