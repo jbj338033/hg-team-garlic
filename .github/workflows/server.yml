@@ -29,6 +29,16 @@ jobs:
           sed -i 's#{AZURE_OPENAI_ENDPOINT}#'"${{ secrets.AZURE_OPENAI_ENDPOINT }}"'#' server/src/main/resources/application.yml
           sed -i 's#{NEWS_API_KEY}#'"${{ secrets.NEWS_API_KEY }}"'#' server/src/main/resources/application.yml
 
+      - name: Gradle Caching
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
       - name: Build with Gradle
         run: |
           cd server
