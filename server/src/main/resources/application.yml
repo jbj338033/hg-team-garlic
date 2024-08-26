@@ -6,16 +6,12 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: validate
-  data:
-    redis:
-      host: ${REDIS_HOST}
-      port: ${REDIS_PORT}
-      password: ${REDIS_PASSWORD}
+      ddl-auto: create
   ai:
     azure:
       openai:
         api-key: ${AZURE_OPENAI_API_KEY}
+        endpoint: ${AZURE_OPENAI_ENDPOINT}
 
 jwt:
   secret-key: ${JWT_SECRET_KEY}
