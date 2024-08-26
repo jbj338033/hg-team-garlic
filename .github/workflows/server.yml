@@ -33,12 +33,13 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t goodfarmserver.azurecr.io/myapp:latest .
-          docker push goodfarmserver.azurecr.io/myapp:latest
+          cd server
+          docker build -t goodfarmserver.azurecr.io/goodfarmserver:latest .
+          docker push goodfarmserver.azurecr.io/goodfarmserver:latest
 
       - name: Deploy to Azure Container Apps
         uses: azure/CLI@v1
         with:
           inlineScript: |
             az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-            az containerapp update --name goodfarm-server --resource-group rg-team-garlic --image goodfarmserver.azurecr.io/myapp:latest
+            az containerapp update --name goodfarm-server --resource-group rg-team-garlic --image goodfarmserver.azurecr.io/goodfarmserver:latest
