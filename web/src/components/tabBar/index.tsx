@@ -15,6 +15,8 @@ const TabBar = () => {
       setPageState('CHATBOT');
     }else if (location.pathname === '/support') {
       setPageState('SUPPORT');
+    }else if (location.pathname === '/profile') {
+      setPageState('PROFILE');
     }else {
       setPageState('/');
     }
@@ -22,6 +24,23 @@ const TabBar = () => {
 
   const navTo = (page:string) => {
     navigation(page);
+  }
+
+  if (
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/auth" ||
+    location.pathname === "/analysis" ||
+    location.pathname === "/analysis/province" ||
+    location.pathname === "/analysis/money" ||
+    location.pathname === "/analysis/land" ||
+    location.pathname === "/analysis/item" ||
+    location.pathname === "/analysis/residence" ||
+    location.pathname === "/analysis/education" ||
+    location.pathname === '/analysis/experience' ||
+    location.pathname === '/analysis/result'
+  ) {
+    return;
   }
 
 
@@ -93,6 +112,32 @@ const TabBar = () => {
           }
         >
           지원사업
+        </S.MenuTitle>
+      </S.MenuBox>
+      <S.MenuBox
+        onClick={() => {
+          navTo("/profile");
+        }}
+      >
+        <IonIcon
+          name={
+            pageState === "PROFILE"
+              ? "person"
+              : "person-outline"
+          }
+          size="large"
+          style={
+            pageState === "PROFILE"
+              ? { fontSize: "1.6rem", color: "#93DB92" }
+              : { fontSize: "1.6rem" }
+          }
+        />
+        <S.MenuTitle
+          style={
+            pageState === "PROFILE" ? { fontWeight: 500, color: "#93DB92" } : {}
+          }
+        >
+          프로필
         </S.MenuTitle>
       </S.MenuBox>
     </S.Container>

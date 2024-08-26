@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const MenuBox = styled.div`
-  width:33%;
+  width:25%;
   height:100%;
   display:flex;
   flex-direction:column;

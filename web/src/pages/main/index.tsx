@@ -2,7 +2,7 @@ import * as S from './style'
 
 const Main = () => {
   return (
-    <S.Container>Main</S.Container>
+    <S.Container>Main1</S.Container>
   )
 }
 

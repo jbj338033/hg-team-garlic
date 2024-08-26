@@ -11,7 +11,6 @@ const useLogin = () => {
     password: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
-  const [autoLogin, setAutoLogin] = useState<boolean>(false);
 
   const [passwordValid, setPasswordValid] = useState<boolean>(true);
   const [usernameValid, setUsernameValid] = useState<boolean>(true);
@@ -27,10 +26,6 @@ const useLogin = () => {
     [setLoginData]
   );
 
-  const toggleAutoLogin = () => {
-    setAutoLogin(!autoLogin);
-  };
-
   const initValidState = () => {
     setPasswordValid(true);
     setUsernameValid(true);
@@ -42,26 +37,18 @@ const useLogin = () => {
       if (!loading) {
         try {
           const res = await axios.post(
-            "http://13.209.80.146:8080/auth/login",
+            `${import.meta.env.VITE_API_URL}/auth/login`,
             loginData
           );
-          if (autoLogin) {
-            setCookie("REFRESH_TOKEN", res.data.refreshToken, {
-              path: "/",
-              maxAge: 2600000,
-            });
-            setCookie("ACCESS_TOKEN", res.data.accessToken, {
-              path: "/",
-              maxAge: 2600000,
-            });
-          } else {
-            setCookie("REFRESH_TOKEN", res.data.refreshToken, { path: "/" });
-            setCookie("ACCESS_TOKEN", res.data.accessToken, { path: "/" });
-          }
-          NotificationService.success("Login success");
+          setCookie("REFRESH_TOKEN", res.data.refreshToken, { path: "/", maxAge:2600000 });
+          setCookie("ACCESS_TOKEN", res.data.accessToken, {
+            path: "/",
+            maxAge: 2600000,
+          });
+          NotificationService.success("로그인 성공!");
           navigate("/");
         } catch (err: any) {
-          NotificationService.error("login failed");
+          NotificationService.error("로그인 실패");
 
           if (err.response.status === 404) {
             setUsernameValid(false);
@@ -88,8 +75,6 @@ const useLogin = () => {
   return {
     loginData,
     handleLoginData,
-    autoLogin,
-    toggleAutoLogin,
     submit,
     loading,
     passwordValid,

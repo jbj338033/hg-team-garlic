@@ -1,15 +1,15 @@
 import React, { useCallback, useState } from "react";
 import { SignupType } from "../../types/auth/auth.type.ts";
 import axios from "axios";
-import { setCookie } from "../../libs/cookies/cookie.ts";
 import NotificationService from "../../libs/notification/NotificationService.ts";
 import { useNavigate } from "react-router-dom";
 
-const useLogin = () => {
+const useSignup = () => {
   const [signupData, setSignupData] = useState<SignupType>({
     username: "",
     password: "",
   });
+  const [passwordChk, setPasswordChk] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
   const [passwordValid, setPasswordValid] = useState<boolean>(true);
@@ -17,7 +17,7 @@ const useLogin = () => {
 
   const navigate = useNavigate();
 
-  const handleLoginData = useCallback(
+  const handleSignupData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       initValidState();
       const { name, value } = e.target;
@@ -25,6 +25,10 @@ const useLogin = () => {
     },
     [setSignupData]
   );
+
+  const handlePasswordChk = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordChk(e.target.value);
+  }
 
 
   const initValidState = () => {
@@ -34,6 +38,10 @@ const useLogin = () => {
 
   const submit = async () => {
     if (signupData.username.length > 0 && signupData.password.length > 0) {
+      if(passwordChk !== signupData.password) {
+        NotificationService.warn('비밀번호를 다시 확인해주세요.');
+        return;
+      }
       setLoading(true);
       if (!loading) {
         try {
@@ -41,19 +49,16 @@ const useLogin = () => {
             `${import.meta.env.VITE_API_URL}/auth/signup`,
             signupData
           );
-          setCookie("REFRESH_TOKEN", res.data.refreshToken, { path: "/", maxAge:2600000 });
-          setCookie("ACCESS_TOKEN", res.data.accessToken, { path: "/", maxAge:2600000 });
-          NotificationService.success("Login success");
-          navigate("/");
-        } catch (err: any) {
-          NotificationService.error("로그인 실패");
-
-          if (err.response.status === 404) {
-            setUsernameValid(false);
+          if (res) {
+            NotificationService.success("회원가입 성공!");
+            navigate("/login");
           }
-
-          if (err.response.status === 401) {
-            setPasswordValid(false);
+        } catch (err: any) {
+          if (err.response.status === 409) {
+            setUsernameValid(false);
+            NotificationService.error("이미 사용 중인 아이디 입니다.");
+          }else{
+            NotificationService.error("네트워크 에러");
           }
         } finally {
           setLoading(false);
@@ -72,11 +77,13 @@ const useLogin = () => {
 
   return {
     signupData,
-    handleLoginData,
+    handleSignupData,
     submit,
     loading,
     passwordValid,
     usernameValid,
+    passwordChk,
+    handlePasswordChk
   };
 };
-export default useLogin;
+export default useSignup;
