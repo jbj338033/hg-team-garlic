@@ -17,6 +17,7 @@ public class UserAnalysis {
     private Long id;
 
     // 귀농할 장소
+    @Builder.Default
     private String location = "";
 
     // 자금이 있음
