@@ -21,8 +21,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
-    private static final String USER = "ROLE_USER";
-    private static final String ADMIN = "ROLE_ADMIN";
+    private static final String USER = "USER";
+    private static final String ADMIN = "ADMIN";
 
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
@@ -53,6 +53,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/signup", "/auth/login", "/auth/reissue").anonymous()
                         .requestMatchers(HttpMethod.GET, "/users/me").authenticated()
                         .requestMatchers(HttpMethod.POST, "/users/me/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/suggests/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/suggests/**").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/news").permitAll()
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 )
 

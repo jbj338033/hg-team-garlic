@@ -3,11 +3,13 @@ package com.goodfarm.domain.suggest.domain.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "suggest_locations")
 @Getter
+@Setter
 @SuperBuilder
 @NoArgsConstructor
 public class SuggestLocation {
@@ -15,10 +17,9 @@ public class SuggestLocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    // 인구수
     @Column(name = "population", nullable = false)
     private Integer population;
 

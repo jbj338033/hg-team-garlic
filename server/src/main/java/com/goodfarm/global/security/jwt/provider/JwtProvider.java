@@ -47,15 +47,7 @@ public class JwtProvider {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
-        String refreshToken = Jwts.builder()
-                .setHeaderParam(Header.JWT_TYPE, JwtType.REFRESH)
-                .setSubject(user.getUsername())
-                .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + jwtProperties.getRefreshTokenExpiration()))
-                .signWith(key, SignatureAlgorithm.HS256)
-                .compact();
-
-        return new Jwt(accessToken, refreshToken);
+        return new Jwt(accessToken);
     }
 
     public Authentication getAuthentication(String token) {
