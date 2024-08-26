@@ -37,9 +37,10 @@ jobs:
           docker build --platform linux/amd64 -t goodfarmserver.azurecr.io/goodfarmserver:latest .
           docker push goodfarmserver.azurecr.io/goodfarmserver:latest
 
-      - name: Deploy to Azure Container Apps
-        uses: azure/CLI@v1
+      - name: Azure Login
+        uses: azure/login@v1
         with:
-          inlineScript: |
-            az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-            az containerapp update --name goodfarmserver --resource-group rg-team-garlic --image goodfarmserver.azurecr.io/goodfarmserver:latest
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Container Apps
+        run: az containerapp update --name goodfarm-server --resource-group rg-team-garlic --image goodfarmserver.azurecr.io/goodfarmserver:latest
