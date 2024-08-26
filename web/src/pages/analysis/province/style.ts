@@ -1,13 +1,21 @@
-import styled from "styled-components";
-
+import styled, { keyframes } from "styled-components";
+const SlideIn = keyframes`
+  0% {
+    margin-left:5rem;
+  }
+  100% {
+    margin-left:0;
+  }
+`;
 export const Container = styled.div`
-  width:100%;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  align-items:center;
-`
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  animation: ${SlideIn} 0.3s forwards;
+`;
 export const QuestionWrap = styled.div`
   display:flex;
   flex-direction:column;
