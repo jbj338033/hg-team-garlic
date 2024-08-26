@@ -1,1 +1,1 @@
-rootProject.name = "goodfarm"
+rootProject.name = "goodfarm-server"
