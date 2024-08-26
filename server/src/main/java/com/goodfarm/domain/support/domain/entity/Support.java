@@ -2,9 +2,7 @@ package com.goodfarm.domain.support.domain.entity;
 
 import com.goodfarm.domain.support.domain.enums.SupportCategory;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
@@ -14,7 +12,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @SuperBuilder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Support {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
