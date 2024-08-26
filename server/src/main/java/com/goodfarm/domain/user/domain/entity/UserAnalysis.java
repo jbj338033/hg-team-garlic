@@ -10,8 +10,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @SuperBuilder
-@NoArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserAnalysis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

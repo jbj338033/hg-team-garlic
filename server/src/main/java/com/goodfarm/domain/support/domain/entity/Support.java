@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Setter
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 public class Support {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
