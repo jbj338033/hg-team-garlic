@@ -47,4 +47,4 @@ jobs:
           app-name: ${{ secrets.WEB_APP_NAME }}
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }} # Publish profile should always be stored as secrets in your repository Settings - Secrets and variables - Actions - secrets
-          package: .
+          package: web/dist
