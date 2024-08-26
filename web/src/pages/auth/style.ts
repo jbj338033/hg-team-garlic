@@ -34,6 +34,7 @@ export const Title = styled.h1`
   font-size:3rem;
   font-weight:400;
   margin-top:2rem;
+  text-align:center;
 `
 export const ButtonWrap = styled.div`
   width:100%;
