@@ -21,7 +21,7 @@ public class ChatServiceImpl implements ChatService {
             "농업에 대한 정보를 알려주세요!",
             "농업에 대한 정보를 알고 싶어요!",
             "농업에 필요한 정보를 알려주세요!"
-    )
+    );
     private final AzureOpenAiChatModel chatModel;
 
     @Override
