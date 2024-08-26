@@ -9,3 +9,5 @@ services:
         host: containerapp
         language: ts
         dist: dist
+        docker:
+            path: Dockerfile
