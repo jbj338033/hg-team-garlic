@@ -7,20 +7,21 @@ import org.springframework.ai.azure.openai.AzureOpenAiChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ChatServiceImpl implements ChatService {
-    private static List<String> RECOMMENDATIONS = new ArrayList(
+    private static final List<String> RECOMMENDATIONS = Arrays.asList(
             "귀농을 하고 싶어요!",
             "농업에 대해 더 알고 싶어요!",
             "농업에 대한 정보를 알려주세요!",
             "농업에 대한 정보를 알고 싶어요!",
             "농업에 필요한 정보를 알려주세요!"
-    );
+    )
     private final AzureOpenAiChatModel chatModel;
 
     @Override
