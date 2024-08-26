@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: bun-app
-          path: dist # This should be your distribution path, not the root path
+          path: web/dist # This should be your distribution path, not the root path
 
   # Deploy the application to Azure
   deploy:
