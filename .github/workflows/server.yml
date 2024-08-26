@@ -21,13 +21,13 @@ jobs:
 
       - name: Inject Environments
         run: |
-          sed -i 's#{DATABASE_URL}#'"${{ secrets.DATABASE_URL }}"'#' server/src/main/resources/application.yml
-          sed -i 's#{DATABASE_USERNAME}#'"${{ secrets.DATABASE_USERNAME }}"'#' server/src/main/resources/application.yml
-          sed -i 's#{DATABASE_PASSWORD}#'"${{ secrets.DATABASE_PASSWORD }}"'#' server/src/main/resources/application.yml
-          sed -i 's#{JWT_SECRET_KEY}#'"${{ secrets.JWT_SECRET_KEY }}"'#' server/src/main/resources/application.yml
-          sed -i 's#{AZURE_OPENAI_API_KEY}#'"${{ secrets.AZURE_OPENAI_API_KEY }}"'#' server/src/main/resources/application.yml
-          sed -i 's#{AZURE_OPENAI_ENDPOINT}#'"${{ secrets.AZURE_OPENAI_ENDPOINT }}"'#' server/src/main/resources/application.yml
-          sed -i 's#{NEWS_API_KEY}#'"${{ secrets.NEWS_API_KEY }}"'#' server/src/main/resources/application.yml
+          sed -i 's#{DATABASE_URL}#${{ secrets.DATABASE_URL }}#' server/src/main/resources/application.yml
+          sed -i 's#{DATABASE_USERNAME}#${{ secrets.DATABASE_USERNAME }}#' server/src/main/resources/application.yml
+          sed -i 's#{DATABASE_PASSWORD}#${{ secrets.DATABASE_PASSWORD }}#' server/src/main/resources/application.yml
+          sed -i 's#{JWT_SECRET_KEY}#${{ secrets.JWT_SECRET_KEY }}#' server/src/main/resources/application.yml
+          sed -i 's#{AZURE_OPENAI_API_KEY}#${{ secrets.AZURE_OPENAI_API_KEY }}#' server/src/main/resources/application.yml
+          sed -i 's#{AZURE_OPENAI_ENDPOINT}#${{ secrets.AZURE_OPENAI_ENDPOINT }}#' server/src/main/resources/application.yml
+          sed -i 's#{NEWS_API_KEY}#${{ secrets.NEWS_API_KEY }}#' server/src/main/resources/application.yml
 
       - name: Gradle Caching
         uses: actions/cache@v3
