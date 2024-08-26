@@ -38,6 +38,9 @@ public class SuggestLand {
     @Column(nullable = false)
     private Double longitude;
 
+    @Column(nullable = false)
+    private String url;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "suggest_location_id", nullable = false)
     private SuggestLocation location;

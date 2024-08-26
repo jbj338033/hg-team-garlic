@@ -4,6 +4,7 @@ import com.goodfarm.domain.user.domain.enums.UserAnalysisBoolean;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -13,6 +14,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class UserAnalysis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

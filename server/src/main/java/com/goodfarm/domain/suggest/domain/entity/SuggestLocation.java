@@ -31,4 +31,7 @@ public class SuggestLocation {
 
     @Column(name = "logo", nullable = false)
     private String logo;
+
+    @Column(name = "url", nullable = false)
+    private String url;
 }

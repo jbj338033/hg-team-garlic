@@ -16,6 +16,7 @@ import com.goodfarm.global.error.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +29,13 @@ public class SuggestServiceImpl implements SuggestService {
 
     @Override
     public List<SuggestBookResponse> suggestBooks() {
-            return suggestBookRepository.findAll().stream()
-                    .map(SuggestBookResponse::of)
-                    .collect(Collectors.toList());
+        List<SuggestBook> books = suggestBookRepository.findAll();
+
+        Collections.shuffle(books);
+
+        return books.stream().map(SuggestBookResponse::of)
+                .limit(5)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -49,15 +54,25 @@ public class SuggestServiceImpl implements SuggestService {
     @Override
     public List<SuggestLandResponse> suggestLands(String location) {
         if (location == null) {
-            return suggestLandRepository.findTop5ByOrderByIdAsc().stream()
+            List<SuggestLand> lands = suggestLandRepository.findAll();
+
+            Collections.shuffle(lands);
+
+            return lands.stream()
                     .map(SuggestLandResponse::of)
+                    .limit(5)
                     .collect(Collectors.toList());
         } else {
             SuggestLocation loc = suggestLocationRepository.findByName(location)
                     .orElseThrow(() -> new CustomException(SuggestLocationError.LOCATION_NOT_FOUND));
 
-            return suggestLandRepository.findTop5ByLocationOrderByIdAsc(loc).stream()
+            List<SuggestLand> lands = suggestLandRepository.findTop5ByLocationOrderByIdAsc(loc);
+
+            Collections.shuffle(lands);
+
+            return lands.stream()
                     .map(SuggestLandResponse::of)
+                    .limit(5)
                     .collect(Collectors.toList());
         }
     }
@@ -91,14 +106,19 @@ public class SuggestServiceImpl implements SuggestService {
     }
 
     @Override
-    public List<SuggestLocationResponse> suggestLocations() {
-        return suggestLocationRepository.findTop5ByOrderByIdAsc().stream()
+    public List<SuggestLocationResponse> suggestLocation() {
+        List<SuggestLocation> locations = suggestLocationRepository.findAll();
+
+        Collections.shuffle(locations);
+
+        return locations.stream()
                 .map(SuggestLocationResponse::of)
+                .limit(5)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public void suggestLocations(SuggestLocationRequest request) {
+    public void suggestLocation(SuggestLocationRequest request) {
         SuggestLocation location = SuggestLocation.builder()
                 .name(request.name())
                 .population(request.population())

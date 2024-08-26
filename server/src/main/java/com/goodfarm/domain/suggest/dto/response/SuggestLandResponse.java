@@ -9,7 +9,8 @@ public record SuggestLandResponse(
         String cover,
         String address,
         int area,
-        int price
+        int price,
+        String url
 ) {
     public static SuggestLandResponse of(SuggestLand land) {
         return new SuggestLandResponse(
@@ -19,7 +20,8 @@ public record SuggestLandResponse(
                 land.getCover(),
                 land.getAddress(),
                 land.getArea(),
-                land.getPrice()
+                land.getPrice(),
+                land.getUrl()
         );
     }
 }

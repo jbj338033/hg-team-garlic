@@ -43,12 +43,12 @@ public class SuggestController {
 
     @GetMapping("/locations")
     public List<SuggestLocationResponse> suggestLocations() {
-        return suggestService.suggestLocations();
+        return suggestService.suggestLocation();
     }
 
     @PostMapping("/locations")
     public void suggestLocations(@RequestBody SuggestLocationRequest request) {
-        suggestService.suggestLocations(request);
+        suggestService.suggestLocation(request);
     }
 
     @PatchMapping("/locations/{locationName}")

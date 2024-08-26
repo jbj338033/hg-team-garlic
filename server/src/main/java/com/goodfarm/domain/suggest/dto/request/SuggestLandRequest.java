@@ -8,6 +8,7 @@ public record SuggestLandRequest(
         String cover,
         double latitude,
         double longitude,
-        String location
+        String location,
+        String url
 ) {
 }

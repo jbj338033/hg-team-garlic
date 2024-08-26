@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface SuggestLandRepository extends JpaRepository<SuggestLand, Long> {
-    List<SuggestLand> findTop5ByOrderByIdAsc();
     List<SuggestLand> findTop5ByLocationOrderByIdAsc(SuggestLocation location);
 }

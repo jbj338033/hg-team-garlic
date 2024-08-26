@@ -18,9 +18,9 @@ public interface SuggestService {
 
     void updateLand(Long landId, SuggestLandUpdateRequest request);
 
-    List<SuggestLocationResponse> suggestLocations();
+    List<SuggestLocationResponse> suggestLocation();
 
-    void suggestLocations(SuggestLocationRequest request);
+    void suggestLocation(SuggestLocationRequest request);
 
     void updateLocation(String locationName, SuggestLocationUpdateRequest request);
 }
