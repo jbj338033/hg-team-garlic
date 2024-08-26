@@ -2,10 +2,7 @@ package com.goodfarm.domain.user.domain.entity;
 
 import com.goodfarm.domain.user.domain.enums.UserAnalysisBoolean;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Entity
@@ -24,26 +21,32 @@ public class UserAnalysis {
     private String location = "";
 
     // 자금이 있음
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private UserAnalysisBoolean hasMoney = UserAnalysisBoolean.NULL;
 
     // 토지가 있음
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private UserAnalysisBoolean hasLand = UserAnalysisBoolean.NULL;
 
     // 거주지 있음
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private UserAnalysisBoolean hasResidence = UserAnalysisBoolean.NULL;
 
     // 농사 경험이 있음
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private UserAnalysisBoolean hasExperience = UserAnalysisBoolean.NULL;
 
     // 사업 아이템이 있음
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private UserAnalysisBoolean hasIdea = UserAnalysisBoolean.NULL;
 
     // 공부를 했음
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private UserAnalysisBoolean hasStudied = UserAnalysisBoolean.NULL;
 
