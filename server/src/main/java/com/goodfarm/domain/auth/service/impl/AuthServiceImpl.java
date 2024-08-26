@@ -35,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
                 .username(username)
                 .password(passwordEncoder.encode(password))
                 .role(UserRole.USER)
-                .analysis(new UserAnalysis())
+                .analysis(UserAnalysis.builder().build())
                 .build();
 
         userRepository.save(user);
