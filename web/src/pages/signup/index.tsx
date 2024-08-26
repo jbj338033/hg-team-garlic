@@ -47,7 +47,13 @@ const Signup = () => {
           type="password"
         />
       </S.InputWrap>
-      <S.Button onClick={signup.submit}>회원가입</S.Button>
+      <S.Button
+        onClick={signup.submit}
+        disabled={signup.loading}
+        style={signup.loading ? { backgroundColor: "#28a426" } : {}}
+      >
+        {signup.loading ? "회원가입 중..." : "회원가입"}
+      </S.Button>
     </S.Container>
   );
 };

@@ -41,7 +41,13 @@ const Login = () => {
           type="password"
         />
       </S.InputWrap>
-      <S.Button onClick={login.submit}>로그인</S.Button>
+      <S.Button
+        onClick={login.submit}
+        disabled={login.loading}
+        style={login.loading ? { backgroundColor: "#28a426" } : {}}
+      >
+        {login.loading ? "로그인 중..." : "로그인"}
+      </S.Button>
     </S.Container>
   );
 };

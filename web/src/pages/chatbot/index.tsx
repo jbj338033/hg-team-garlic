@@ -24,6 +24,9 @@ const Chatbot = () => {
         {chat.chatData.map((item, idx) => (
           <Chatbox message={item} key={idx} />
         ))}
+        {
+          chat.loading && <Chatbox message="....."/>
+        }
       </S.ChatWrap>
       <S.RecommendWrap>
         {chat.recommend.map((item,idx) => (

@@ -69,5 +69,5 @@ export const Recommend = styled.div`
   align-items:center;
   font-size:1.2rem;
   cursor: pointer;
-  margin: 0 1rem
+  margin: 0 1rem 1rem 0;
 `;

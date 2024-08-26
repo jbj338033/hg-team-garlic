@@ -26,7 +26,20 @@ const TabBar = () => {
     navigation(page);
   }
 
-  if(location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/auth') {
+  if (
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/auth" ||
+    location.pathname === "/analysis" ||
+    location.pathname === "/analysis/province" ||
+    location.pathname === "/analysis/money" ||
+    location.pathname === "/analysis/land" ||
+    location.pathname === "/analysis/item" ||
+    location.pathname === "/analysis/residence" ||
+    location.pathname === "/analysis/education" ||
+    location.pathname === '/analysis/experience' ||
+    location.pathname === '/analysis/result'
+  ) {
     return;
   }
 
