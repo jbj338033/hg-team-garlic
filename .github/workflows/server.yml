@@ -34,7 +34,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           cd server
-          docker build -t goodfarmserver.azurecr.io/goodfarmserver:latest .
+          docker build --platform linux/amd64 -t goodfarmserver.azurecr.io/goodfarmserver:latest .
           docker push goodfarmserver.azurecr.io/goodfarmserver:latest
 
       - name: Deploy to Azure Container Apps
