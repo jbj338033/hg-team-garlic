@@ -34,13 +34,13 @@ jobs:
         with:
           files: 'server/src/main/resources/application.yml'
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
-          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
-          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
-          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+          spring.datasource.url: ${{ secrets.DATABASE_URL }}
+          spring.datasource.username: ${{ secrets.DATABASE_USERNAME }}
+          spring.datasource.password: ${{ secrets.DATABASE_PASSWORD }}
+          jwt.secret-key: ${{ secrets.JWT_SECRET_KEY }}
+          spring.ai.azure.openai.api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          spring.ai.azure.openai.endpoint: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          news.api-key: ${{ secrets.NEWS_API_KEY }}
 
       - name: Gradle Caching
         uses: actions/cache@v3
